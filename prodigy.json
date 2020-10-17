@@ -1,9 +1,0 @@
-{
-  "db": "sqlite",
-  "db_settings": {
-    "sqlite": {
-      "name": "kim-engage-2020-10-02.db",
-      "path": "../w210_capstone/teacherprints/prodigy/annotations/"
-    }
-  }
-}
