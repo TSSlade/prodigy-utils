@@ -68,7 +68,9 @@ delimit
 sqlite3 ${DB} "${QUERY}" > ${DSLIST}
 
 if [[ $EXPORT == true ]];
-  then cat << EOF > prodigy.json
+  then
+    [ -f "./prodigy.json" ] && echo "Existing prodigy.json file getting backed up..." && mv prodigy.json prodigy.json.bak
+    cat << EOF > prodigy.json
 {
 "db": "sqlite",
 "db_settings": {
@@ -79,7 +81,7 @@ if [[ $EXPORT == true ]];
   }
 }
 EOF
-[ -d "./exports" ] && mkdir ./exports
+[ ! -d "./exports" ] && echo "./exports dir being created..." && mkdir ./exports
 cat ${DSLIST} | xargs -I {} prodigy db-out {} ./exports
 fi
 
